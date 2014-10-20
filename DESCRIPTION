@@ -1,0 +1,9 @@
+Package: windrose
+Type: Package
+Title: Supports the creation and plotting of rose plots for wind data
+Version: 0.1
+Date: 2014-10-20
+Author: Thomas Hopper
+Maintainer: Thomas Hopper <tomhopper@gmail.com>
+Description: Supports creation of a “windrose” object, which can then be plotted. Based on code originally created by Andy Clifton and posted to Stack Overflow http://stackoverflow.com/a/17266781/393354
+License: MIT

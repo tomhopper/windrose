@@ -2,7 +2,7 @@
 \alias{wind_data}
 \docType{data}
 \title{
-%%   ~~ data name/kind ... ~~
+Sample wind data
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
@@ -27,6 +27,7 @@
 }
 \examples{
 data(wind_data)
-## maybe str(wind_data) ; plot(wind_data) ...
+wind_rose <- windrose(data = wind_data, spd = Wind_Speed_meter_per_second, dir = Wind_Direction_deg)
+plot(wind_rose)
 }
 \keyword{datasets}

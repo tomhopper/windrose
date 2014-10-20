@@ -1,11 +1,11 @@
 \name{windrose}
-\alias{windrose}
+\alias{windrose_object}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Creates a windrose object
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Create a windrose object from wind speed and direction data. Data can be passed as two vectors or as the column names of a data frame. Column names do not need to be quoted.
 }
 \usage{
 windrose(data = NULL, spd, dir, spdres = NULL, dirres = 45, spdmin = NULL, spdmax = NULL, spdseq = NULL, palette = "YlGnBu", countmax = NA, plot_rose = FALSE)
@@ -13,54 +13,50 @@ windrose(data = NULL, spd, dir, spdres = NULL, dirres = 45, spdmin = NULL, spdma
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{
-%%     ~~Describe \code{data} here~~
+(optional) A data frame containing, at least, a column of wind speed data and a column of wind direction data.
 }
   \item{spd}{
-%%     ~~Describe \code{spd} here~~
+If \code{data} is provided, the name of the column containing wind speed data. If \code{data} is not provided, then a vector containing wind speed data.
 }
   \item{dir}{
-%%     ~~Describe \code{dir} here~~
+If \code{data} is provided, the name of the column containing wind direction data. If \code{data} is not provided, then a vector containing wind diretion data where \code{length(dir) == length(spd)}.
 }
   \item{spdres}{
-%%     ~~Describe \code{spdres} here~~
+(optional) A numeric value indicating the number of bins to use with \code{spd} for plotting. If no value is given, defaults to 10 bins.
 }
   \item{dirres}{
-%%     ~~Describe \code{dirres} here~~
+(optional) A numeric value indicating the number of degrees to use for each bin of \code{dir} for plotting. The default is 45 degrees, providing a plot with bins N, NE, E, SE, S, SW, W, NW.
 }
   \item{spdmin}{
-%%     ~~Describe \code{spdmin} here~~
+(optional) The minimum speed to use for calculating bin edges. All colors less than this value will be plotted in the same color. Ignored if spdseq is provided.
 }
   \item{spdmax}{
-%%     ~~Describe \code{spdmax} here~~
+(optional) The maximum speed to use for calculating bin edges. All colors greater than this value will be plotted in the same color. Ignored if spdseq is provided
 }
   \item{spdseq}{
-%%     ~~Describe \code{spdseq} here~~
+(optional) A numeric vector specifying the edges of bins to use during plotting wind speed.
 }
   \item{palette}{
-%%     ~~Describe \code{palette} here~~
+(optional) A Brewer Color palette, from package *RColorBrewer*, to use for plotting wind speed. Defaults to "YlGnBu".
 }
   \item{countmax}{
-%%     ~~Describe \code{countmax} here~~
+(optional) Not used.
 }
   \item{plot_rose}{
-%%     ~~Describe \code{plot_rose} here~~
+(optional) If TRUE, the rose plot will be printed when the windrose object is created. Defaults to FALSE, with \code{windrose()} only returning the windrose object.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+An object of class windrose. May be treated as a list object.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Thomas Hopper
 }
 \note{
 %%  ~~further notes~~
@@ -75,77 +71,9 @@ windrose(data = NULL, spd, dir, spdres = NULL, dirres = 45, spdmin = NULL, spdma
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
+wind_df <- data.frame(speed = rlnorm(1000, 0, 0.75), direction = runif(1000, 0, 360))
+wind_rose <- windrose(data = wind_df, spd = speed, dir = direction)
 
-## The function is currently defined as
-function (data = NULL, spd, dir, spdres = NULL, dirres = 45, 
-    spdmin = NULL, spdmax = NULL, spdseq = NULL, palette = "YlGnBu", 
-    countmax = NA, plot_rose = FALSE) 
-{
-    if (is.null(data)) {
-        if (is.numeric(spd) & is.numeric(dir)) {
-            data <- data.frame(spd = spd, dir = dir)
-            spd <- "spd"
-            dir <- "dir"
-        }
-    }
-    else {
-        if (class(data) == "data.frame") {
-            spd <- deparse(substitute(spd))
-            dir <- deparse(substitute(dir))
-        }
-        else {
-            stop("Please pass a data frame to parameter 'data'.")
-        }
-    }
-    if (is.null(spdmin)) 
-        spdmin <- min(data[[spd]], na.rm = TRUE)
-    if (is.null(spdmax)) 
-        spdmax <- max(data[[spd]], na.rm = TRUE)
-    n_in <- NROW(data)
-    dnu <- (is.na(data[[spd]]) | is.na(data[[dir]]))
-    data[[spd]][dnu] <- NA
-    data[[dir]][dnu] <- NA
-    if (is.null(spdseq)) {
-        if (is.null(spdres)) 
-            spdres <- (spdmax - spdmin)/10
-        spdseq <- round(seq(spdmin, spdmax, spdres), digits = 1)
-    }
-    else {
-    }
-    n_spd_seq <- length(spdseq)
-    n_colors_in_range <- n_spd_seq - 1
-    spd_colors <- colorRampPalette(brewer.pal(min(max(3, n_colors_in_range), 
-        min(9, n_colors_in_range)), palette))(n_colors_in_range)
-    if (max(data[[spd]], na.rm = TRUE) > spdmax) {
-        spd_breaks <- c(spdseq, max(data[[spd]], na.rm = TRUE))
-        spd_labels <- c(paste(c(spdseq[1:n_spd_seq - 1]), "-", 
-            c(spdseq[2:n_spd_seq])), paste(spdmax, "-", max(data[spd], 
-            na.rm = TRUE)))
-        spd_colors <- c(spd_colors, "grey50")
-    }
-    else {
-        spd_breaks <- c(seq(spdseq))
-        spd_labels <- paste(c(spdseq[1:n_spd_seq - 1]), "-", 
-            c(spdseq[2:n_spd_seq]))
-    }
-    data$spd_binned <- cut(x = data[[spd]], breaks = spd_breaks, 
-        labels = spd_labels, ordered_result = TRUE)
-    dir_breaks <- c(-dirres/2, seq(dirres/2, 360 - dirres/2, 
-        by = dirres), 360 + dirres/2)
-    dir_labels <- c(paste(round(360 - dirres/2, 0), "-", round(dirres/2, 
-        0)), paste(round(seq(dirres/2, 360 - 3 * dirres/2, by = dirres), 
-        0), "-", round(seq(3 * dirres/2, 360 - dirres/2, by = dirres), 
-        0)), paste(round(360 - dirres/2, 0), "-", round(dirres/2, 
-        0)))
-    dir_binned <- cut(data[[dir]], breaks = dir_breaks, ordered_result = TRUE)
-    levels(dir_binned) <- dir_labels
-    data$dir_binned <- dir_binned
-    wind_data <- structure(list(data = data, dirres = dirres, 
-        countmax = countmax, spd_colors = spd_colors), class = "windrose")
-    attr(wind_data, "hidden") <- c("dirres", "countmax", "spd_colors")
-    if (plot_rose == TRUE) 
-        plot(data)
-    return(wind_data)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

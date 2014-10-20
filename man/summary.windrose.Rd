@@ -1,22 +1,22 @@
 \name{summary.windrose}
-\alias{summary.windrose}
+\alias{summary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Prints a summary of a windrose object
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-summary.windrose(object, ...)
+summary(object, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{
-%%     ~~Describe \code{object} here~~
+A windrose object.
 }
   \item{\dots}{
-%%     ~~Describe \code{\dots} here~~
+Other arguments are ignored.
 }
 }
 \details{
@@ -33,7 +33,7 @@ summary.windrose(object, ...)
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Thomas Hopper
 }
 \note{
 %%  ~~further notes~~
@@ -45,25 +45,10 @@ summary.windrose(object, ...)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (object, ...) 
-{
-    s_windrose <- cat("Number of records = ", length(object$data$DateTime), 
-        "\n", "Wind speed:", "\n", names(summary(object$data$Wind_Speed_meter_per_second)), 
-        "\n", summary(object$data$Wind_Speed_meter_per_second), 
-        "\n", "Wind direction:", "\n", names(summary(object$data$Wind_Direction_deg)), 
-        "\n", summary(object$data$Wind_Direction_deg), "\n", 
-        "Speed bins = ", length(levels(object$data$spd_binned)), 
-        "\n", "Direction bins = ", length(levels(object$data$dir_binned)), 
-        "\n")
-    return(s_windrose)
-  }
+data(wind_data)
+wind_rose <- windrose(data = wind_data, spd = Wind_Speed_meter_per_second, dir = Wind_Direction_deg)
+summary(wind_rose)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }

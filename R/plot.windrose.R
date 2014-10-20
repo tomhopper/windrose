@@ -1,12 +1,21 @@
+#' @name plot
+#' @title Plots a windrose object using ggplot2
+#' @usage plot(data_rose)
+#' @param data a data object of class windrose
+#' @param palette (optional) one of the RColorBrewer ColorBrewer palettes
+#' @param plot_theme (optional) a character string specifying a ggplot theme, e.g. "theme_minimal". Also supports ggthemes and xkcd.
+#' @return returns a ggplot2 graph object
+#' @export
+#' @seealso \code{ggplot2}, \code{ggtheme} and \code{brewer.pal}.
 plot.windrose <-
-function(x = NULL, y = NULL, data, 
+function(data, x = NULL, y = NULL, 
                           palette = NULL, 
                           plot_theme = "theme_minimal",
                           ...) {
   
-  #' dirres
-  #' countmax
-  #' spd_colors
+  # dirres
+  # countmax
+  # spd_colors
   
   if(plot_theme == "theme_grey") plot_theme <- "theme_gray"
   if(is.null(plot_theme)) plot_theme <- "theme_minimal"

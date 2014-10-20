@@ -3,8 +3,7 @@
 \alias{windrose}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+Provides manipulation and plotting of wind speed and direction data.
 }
 \description{
 More about what it does (maybe more than one line)
@@ -14,17 +13,16 @@ More about what it does (maybe more than one line)
 \tabular{ll}{
 Package: \tab windrose\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 0.1\cr
 Date: \tab 2014-10-20\cr
-License: \tab What license is it under?\cr
+License: \tab MIT\cr
 }
 ~~ An overview of how to use the package, including the most important functions ~~
 }
 \author{
-Who wrote it
+Thomas Hopper
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Thomas Hopper <tomhopper@gmail.com>
 }
 \references{
 ~~ Literature or other references for background information ~~
@@ -36,5 +34,8 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 ~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
-~~ simple examples of the most important functions ~~
+data(wind_data)
+wind_rose <- windrose(data = wind_data, spd = speed, dir = direction)
+plot(wind_rose)
+summary(wind_rose)
 }

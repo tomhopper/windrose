@@ -1,3 +1,19 @@
+#' @name windrose
+#' @title Create a windrose object
+#' @description Create a windrose object, mainly used for plotting rose plots that display both wind direction and speed data.
+#' @usage data_rose <- windrose(data, speed_column_name, direction_column_name)
+#' @param data (optional) a data.frame containing, at least, columns for wind speed and wind direction
+#' @param palette (optional) one of the RColorBrewer ColorBrewer palettes. Can be changed when plotting.
+#' @param spd (required) either a vector or the data frame column name containing wind speed data. Do not enclose in quotes.
+#' @param dir (required) either a vector or the data frame column name containing wind direction data. Do not enclose in quotes.
+#' @param spdmin (optional) numeric. the minimum wind speed to plot
+#' @param spdmax (optional) numeric. the maximum wind speed to plot
+#' @param spdseq (optional) numeric vector. the cut points used for wind speed color fills. must have at least five elements.
+#' @param countmax (optional) numeric. the maximum number of counts for wind direction data in each bin.
+#' @param plot_rose (optional) boolean. if \code{TRUE}, plots the rose graph when generating the windrose object.
+#' @return a windrose object (a list containing a data frame and several variables used for plotting).
+#' @export
+#' @seealso \code{brewer.pal}.
 windrose <-
 function(data = NULL,
                      spd,

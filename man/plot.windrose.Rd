@@ -1,11 +1,10 @@
 \name{plot}
-\alias{plot.windrose}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\alias{plot}
 \title{
 Plots a windrose object on a custom rose plot
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Plots a rose plot for wind data created with \code{windrose()}, with fill colors based on corresponding wind speed.
 }
 \usage{
 plot(wind_rose)
@@ -13,10 +12,10 @@ plot(wind_rose)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-Not used.
+Not used. Included for compatibility with base \code{plot()}.
 }
   \item{y}{
-Not used.
+Not used. Included for compatibility with base \code{plot()}.
 }
   \item{data}{
 %%     ~~Describe \code{data} here~~
@@ -24,7 +23,7 @@ A windrose object.
 }
   \item{palette}{
 %%     ~~Describe \code{palette} here~~
-The Brewer color palette to use. If NULL, uses the palette specified by \code{windrose()}
+The Brewer color palette to use. If NULL, uses the palette specified by \code{windrose()}.
 }
   \item{plot_theme}{
 %%     ~~Describe \code{plot_theme} here~~
@@ -62,17 +61,22 @@ Based on code provided by Andy Clifton on Stack Overflow \url{http://stackoverfl
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{windrose}}
+\code{\link{RColorBrewer}}
+\code{\link{ggplot}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+##Create a windrose object and plot it.
 wind_df <- data.frame(speed = rlnorm(1000, 0, 0.75), direction = runif(1000, 0, 360))
 wind_rose <- windrose(data = wind_df, spd = speed, dir = direction)
+plot(wind_rose)
+
+##With the built-in data set:
+data(wind_data)
+wind_rose <- windrose(data = wind_data, spd = Wind_Speed_meter_per_second, dir = Wind_Direction_deg)
 plot(wind_rose)
   }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+%\keyword{ ~kwd1 }

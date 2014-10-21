@@ -11,16 +11,16 @@ Sample wind data
 \format{
   A data frame with 90815 observations on the following 3 variables.
   \describe{
-    \item{\code{DateTime}}{a POSIXct}
-    \item{\code{Wind_Speed_meter_per_second}}{a numeric vector}
-    \item{\code{Wind_Direction_deg}}{a numeric vector}
+    \item{\code{DateTime}}{POSIXct date and time data for each measurement of wind speed and direction.}
+    \item{\code{Wind_Speed_meter_per_second}}{Numeric wind speed data, in meters per second.}
+    \item{\code{Wind_Direction_deg}}{Numeric wind direction data, in degrees (0 - 360).}
   }
 }
 \details{
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
 \source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
+Downloaded from MAREC real-time data monitoring \url{http://datamonitoring.marec.gvsu.edu}.
 }
 \references{
 %%  ~~ possibly secondary sources and usages ~~

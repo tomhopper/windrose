@@ -1,13 +1,11 @@
 \name{windrose-package}
 \alias{windrose-package}
-\alias{windrose}
 \docType{package}
 \title{
 Provides manipulation and plotting of wind speed and direction data.
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+Accepts wind speed and direction data and produces an object that can then be plotted, printed or summarized using the functions \code{plot()}, \code{print()} and \code{summary()}. Based on code originally created by ___ and posted to Stack Overflow.
 }
 \details{
 \tabular{ll}{
@@ -17,7 +15,8 @@ Version: \tab 0.1\cr
 Date: \tab 2014-10-20\cr
 License: \tab MIT\cr
 }
-~~ An overview of how to use the package, including the most important functions ~~
+\code{windrose()} produces the windrose object, which can then be plotted, printed or summarized.
+\code{plot()} plots a windrose object.
 }
 \author{
 Thomas Hopper
@@ -25,13 +24,9 @@ Thomas Hopper
 Maintainer: Thomas Hopper <tomhopper@gmail.com>
 }
 \references{
-~~ Literature or other references for background information ~~
+Original wind rose plot code created by Andy Clifton \url{http://stackoverflow.com/a/17266781}. 2013-06-24.
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
 }
 \examples{
 data(wind_data)

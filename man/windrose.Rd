@@ -1,5 +1,5 @@
 \name{windrose}
-\alias{windrose_object}
+\alias{windrose}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Creates a windrose object
@@ -68,14 +68,16 @@ Thomas Hopper
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+## Using data frames
 wind_df <- data.frame(speed = rlnorm(1000, 0, 0.75), direction = runif(1000, 0, 360))
 wind_rose <- windrose(data = wind_df, spd = speed, dir = direction)
 
+## Using vectors
+speed_v <- rlnorm(1000, 0, 0.75)
+direction_v <- runif(1000, 0, 360)
+wind_rose <- windrose(spd = speed_v, dir = direction_v)
   }
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }

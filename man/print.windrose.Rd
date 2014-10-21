@@ -1,11 +1,11 @@
 \name{print.windrose}
-\alias{print.windrose}
+\alias{print}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Prints a windrose object
 }
 \description{
-Prints out the data frame portion of a windrose object
+Prints out the data frame portion of a windrose object.
 }
 \usage{
 print.windrose(x, ...)
@@ -13,7 +13,7 @@ print.windrose(x, ...)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
+A windrose object.
 }
 \item{\dots}{
 Other arguments not used.

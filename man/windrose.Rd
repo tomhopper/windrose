@@ -65,7 +65,9 @@ Thomas Hopper
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{plot}}
+\code{\link{summary}}
+\code{\link{print}}
 }
 \examples{
 ## Using data frames

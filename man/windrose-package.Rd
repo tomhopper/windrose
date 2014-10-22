@@ -27,7 +27,6 @@ Maintainer: Thomas Hopper <tomhopper@gmail.com>
 Original wind rose plot code created by Andy Clifton \url{http://stackoverflow.com/a/17266781}. 2013-06-24.
 }
 \keyword{ package }
-}
 \examples{
 data(wind_data)
 wind_rose <- windrose(data = wind_data, spd = speed, dir = direction)

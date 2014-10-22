@@ -76,7 +76,6 @@ data(wind_data)
 wind_rose <- windrose(data = wind_data, spd = Wind_Speed_meter_per_second, dir = Wind_Direction_deg)
 plot(wind_rose)
   }
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }
